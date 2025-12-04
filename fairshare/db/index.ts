@@ -58,6 +58,20 @@ export async function getAllUsers(): Promise<User[]> {
   return rows;
 }
 
+export async function createUser(name: string, avatarColor?: string): Promise<number> {
+  const db = await dbPromise;
+  const color = avatarColor ?? '#64748b';
+  const res = await db.runAsync('INSERT INTO Users (name, avatar_color) VALUES (?, ?)', name, color);
+  return res.lastInsertRowId as number;
+}
+
+export async function resetDatabase(): Promise<void> {
+  const db = await dbPromise;
+  await db.runAsync('DELETE FROM ExpenseSplits');
+  await db.runAsync('DELETE FROM Expenses');
+  await db.runAsync('DELETE FROM Users');
+}
+
 export async function getAllExpenses(): Promise<import('./types').Expense[]> {
   const db = await dbPromise;
   const rows = await db.getAllAsync<import('./types').Expense>(

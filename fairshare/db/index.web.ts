@@ -1,6 +1,7 @@
 import type { User, Expense, ExpenseSplit } from './types';
 
 let users: User[] = [];
+let nextUserId = 4;
 let expenses: Expense[] = [];
 let splits: ExpenseSplit[] = [];
 let nextExpenseId = 1;
@@ -31,6 +32,22 @@ export async function getDatabase() {
 
 export async function getAllUsers(): Promise<User[]> {
   return users.slice();
+}
+
+export async function createUser(name: string, avatarColor?: string): Promise<number> {
+  const id = nextUserId++;
+  const color = avatarColor ?? '#64748b';
+  users.push({ id, name, avatar_color: color });
+  return id;
+}
+
+export async function resetDatabase(): Promise<void> {
+  users = [];
+  expenses = [];
+  splits = [];
+  nextUserId = 1;
+  nextExpenseId = 1;
+  nextSplitId = 1;
 }
 
 export async function getAllExpenses(): Promise<Expense[]> {
