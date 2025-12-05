@@ -69,3 +69,40 @@ export async function insertExpenseSplits(expenseId: number, userIds: number[], 
     splits.push({ id: nextSplitId++, expense_id: expenseId, user_id: userIds[i], amount_owed: perUserAmountCents[i] });
   }
 }
+
+export async function updateExpense(
+  expenseId: number,
+  title: string,
+  amountCents: number,
+  payerId: number,
+  userIds: number[],
+  perUserAmountCents: number[]
+): Promise<void> {
+  const expenseIndex = expenses.findIndex(e => e.id === expenseId);
+  if (expenseIndex !== -1) {
+    expenses[expenseIndex] = {
+      ...expenses[expenseIndex],
+      title,
+      amount: amountCents,
+      payer_id: payerId
+    };
+  }
+  
+  // Remove old splits
+  splits = splits.filter(s => s.expense_id !== expenseId);
+  
+  // Add new splits
+  for (let i = 0; i < userIds.length; i++) {
+    splits.push({
+      id: nextSplitId++,
+      expense_id: expenseId,
+      user_id: userIds[i],
+      amount_owed: perUserAmountCents[i]
+    });
+  }
+}
+
+export async function deleteExpense(expenseId: number): Promise<void> {
+  splits = splits.filter(s => s.expense_id !== expenseId);
+  expenses = expenses.filter(e => e.id !== expenseId);
+}

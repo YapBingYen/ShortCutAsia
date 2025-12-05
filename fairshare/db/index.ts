@@ -108,3 +108,39 @@ export async function insertExpenseSplits(expenseId: number, userIds: number[], 
     await db.runAsync('INSERT INTO ExpenseSplits (expense_id, user_id, amount_owed) VALUES (?, ?, ?)', expenseId, uid, amt);
   }
 }
+
+export async function updateExpense(
+  expenseId: number,
+  title: string,
+  amountCents: number,
+  payerId: number,
+  userIds: number[],
+  perUserAmountCents: number[]
+): Promise<void> {
+  const db = await dbPromise;
+  await db.runAsync(
+    'UPDATE Expenses SET title = ?, amount = ?, payer_id = ? WHERE id = ?',
+    title,
+    amountCents,
+    payerId,
+    expenseId
+  );
+  
+  // Delete old splits and re-insert
+  await db.runAsync('DELETE FROM ExpenseSplits WHERE expense_id = ?', expenseId);
+  
+  for (let i = 0; i < userIds.length; i++) {
+    await db.runAsync(
+      'INSERT INTO ExpenseSplits (expense_id, user_id, amount_owed) VALUES (?, ?, ?)',
+      expenseId,
+      userIds[i],
+      perUserAmountCents[i]
+    );
+  }
+}
+
+export async function deleteExpense(expenseId: number): Promise<void> {
+  const db = await dbPromise;
+  await db.runAsync('DELETE FROM ExpenseSplits WHERE expense_id = ?', expenseId);
+  await db.runAsync('DELETE FROM Expenses WHERE id = ?', expenseId);
+}

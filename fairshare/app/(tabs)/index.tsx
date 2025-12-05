@@ -94,10 +94,12 @@ export default function HomeScreen() {
       <ThemedView className="gap-2 mb-2">
         <ThemedText type="subtitle">Recent Activity</ThemedText>
         {expenses.map((e) => (
-          <View key={e.id} className="bg-zinc-800 rounded p-3 flex-row justify-between">
-            <ThemedText>{`${e.title} - ${fmt(e.amount)}`}</ThemedText>
-            <ThemedText>{`Paid by ${nameById[e.payer_id] ?? `User ${e.payer_id}`}`}</ThemedText>
-          </View>
+          <Pressable key={e.id} onPress={() => router.push(`/expense/detail?id=${e.id}` as any)}>
+            <View className="bg-zinc-800 rounded p-3 flex-row justify-between">
+              <ThemedText>{`${e.title} - ${fmt(e.amount)}`}</ThemedText>
+              <ThemedText>{`Paid by ${nameById[e.payer_id] ?? `User ${e.payer_id}`}`}</ThemedText>
+            </View>
+          </Pressable>
         ))}
       </ThemedView>
       

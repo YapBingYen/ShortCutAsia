@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Share, Pressable } from 'react-native';
 import { Stack } from 'expo-router';
 import { ThemedView } from '@/components/themed-view';
 import { ThemedText } from '@/components/themed-text';
@@ -24,9 +24,39 @@ export default function SettleScreen() {
 
   const fmt = (cents: number) => `RM ${(cents / 100).toFixed(2)}`;
 
+  const handleShare = async () => {
+    if (instructions.length === 0) return;
+
+    const lines = instructions.map(p => {
+      const from = nameById[p.from_user_id] ?? `User ${p.from_user_id}`;
+      const to = nameById[p.to_user_id] ?? `User ${p.to_user_id}`;
+      return `${from} pays ${to} ${fmt(p.amount)}`;
+    });
+
+    const message = `FairShare Settlement:\n\n${lines.join('\n')}`;
+
+    try {
+      await Share.share({
+        message,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ThemedView className="flex-1 bg-zinc-900">
-      <Stack.Screen options={{ presentation: 'modal', title: 'Settle Up' }} />
+      <Stack.Screen options={{ 
+        presentation: 'modal', 
+        title: 'Settle Up',
+        headerRight: () => (
+          <Pressable onPress={handleShare} disabled={instructions.length === 0}>
+            <ThemedText className={`${instructions.length === 0 ? 'text-zinc-500' : 'text-blue-400'} font-bold`}>
+              Share
+            </ThemedText>
+          </Pressable>
+        )
+      }} />
       <ScrollView className="p-4 gap-3">
         {instructions.length === 0 ? (
           <ThemedText>No payments needed</ThemedText>
