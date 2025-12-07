@@ -5,11 +5,11 @@
   - Tap expense in "Recent Activity" to open details.
   - Edit: Modify title, amount, payer, or splits.
   - Delete: Remove expense and associated splits; update balances.
-- [ ] **User Management**
+- [x] **User Management**
   - "Manage Users" screen.
   - Rename users.
   - Delete users (validate 0 balance first).
-- [ ] **Group Summary**
+- [x] **Group Summary**
   - Visual chart (pie/bar) of spending by user.
   - "Who spent the most" leaderboard.
 
@@ -38,10 +38,6 @@
 - [ ] **Multiple Groups**
   - Group management (Create, Switch, Delete).
   - Scope expenses/users to active group.
-- [ ] **Cloud Sync**
-  - Supabase/Firebase integration.
-  - Auth (Login/Signup).
-  - Real-time sync across devices.
 
 ## 5. Polish
 - [ ] **Currency Picker**

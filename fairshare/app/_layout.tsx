@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import '../global.css';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { setupDatabase } from '@/db';
@@ -23,6 +24,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="add-expense" options={{ presentation: 'modal', title: 'Add Expense' }} />
         <Stack.Screen name="settle" options={{ presentation: 'modal', title: 'Settle Up' }} />
+        <Stack.Screen name="manage-users" options={{ presentation: 'modal', title: 'Manage Users' }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

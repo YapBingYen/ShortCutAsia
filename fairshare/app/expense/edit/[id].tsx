@@ -221,7 +221,7 @@ export default function EditExpenseScreen() {
         <TextInput
           value={title}
           onChangeText={setTitle}
-          className="bg-zinc-800 text-white rounded px-3 py-2"
+          className="bg-zinc-800 text-white rounded-xl px-4 py-4 text-lg"
         />
 
         <ThemedText type="subtitle">Amount (RM)</ThemedText>
@@ -229,7 +229,7 @@ export default function EditExpenseScreen() {
           value={amountText}
           onChangeText={setAmountText}
           keyboardType="decimal-pad"
-          className="bg-zinc-800 text-white rounded px-3 py-2"
+          className="bg-zinc-800 text-white rounded-xl px-4 py-4 text-lg"
         />
 
         <ThemedText type="subtitle">Who Paid?</ThemedText>
@@ -271,16 +271,16 @@ export default function EditExpenseScreen() {
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', marginBottom: 8 },
-  modeRow: { flexDirection: 'row', marginBottom: 8 },
-  chip: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 8, marginRight: 8 },
+  row: { flexDirection: 'row', marginBottom: 16 },
+  modeRow: { flexDirection: 'row', marginBottom: 16 },
+  chip: { paddingHorizontal: 16, paddingVertical: 12, borderRadius: 12, marginRight: 8 },
   chipActive: { backgroundColor: '#059669' },
   chipInactive: { backgroundColor: '#3f3f46' },
-  chipText: { color: 'white' },
-  inputRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
-  inputLabel: { width: 100, color: 'white' },
-  input: { backgroundColor: '#3f3f46', color: 'white', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 8, flex: 1 },
-  button: { marginTop: 12, borderRadius: 8, paddingHorizontal: 16, paddingVertical: 12, marginBottom: 32 },
+  chipText: { color: 'white', fontWeight: '600', fontSize: 16 },
+  inputRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
+  inputLabel: { width: 100, color: 'white', fontSize: 16 },
+  input: { backgroundColor: '#3f3f46', color: 'white', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12, flex: 1, fontSize: 16 },
+  button: { marginTop: 16, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 16, marginBottom: 32 },
   save: { backgroundColor: '#059669' },
-  buttonText: { color: 'white', textAlign: 'center', fontWeight: 'bold' },
+  buttonText: { color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 18 },
 });

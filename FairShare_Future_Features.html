@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FairShare Future Features</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #2c3e50; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 8px; overflow-x: auto; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 40px 0; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        strong { color: #2c3e50; }
+        .recommendation { background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 8px; margin-top: 30px; }
+        .recommendation h3 { margin-top: 0; color: #15803d; }
+    </style>
+</head>
+<body>
+
+    <h1>Future Feature Plan for FairShare</h1>
+    <p>Here are high-impact features to enhance your expense splitter, categorized by complexity.</p>
+
+    <hr>
+
+    <h2>1. User Experience Improvements</h2>
+    <ul>
+        <li><strong>Edit/Delete Expenses:</strong> Allow users to tap an expense in "Recent Activity" to modify amount/split or delete it.</li>
+        <li><strong>User Management:</strong> Add a "Manage Users" screen to rename or delete users (with validation if they have debts).</li>
+        <li><strong>Group Summary:</strong> A visual chart (pie/bar) showing who spent the most.</li>
+    </ul>
+
+    <h2>2. Advanced Splitting (Itemized Bill)</h2>
+    <ul>
+        <li><strong>OCR / Receipt Scanning:</strong> Use <code>expo-image-picker</code> + an OCR API (like Google Vision or Tesseract) to scan receipts and auto-fill items.</li>
+        <li><strong>Itemized Entry Screen:</strong> A dedicated screen to list items (Burger, Coke) and assign specific users to each item, handling tax/service charge proportionally.</li>
+    </ul>
+
+    <h2>3. Social & Sharing</h2>
+    <ul>
+        <li><strong>Share Settlement:</strong> Generate a text summary or image of the "Settle Up" cards to share via WhatsApp/Telegram (<code>Share.share</code>).</li>
+        <li><strong>Deep Linking:</strong> Allow sharing a link that opens the app with pre-filled data (requires backend sync).</li>
+    </ul>
+
+    <h2>4. Data & Sync</h2>
+    <ul>
+        <li><strong>Export CSV:</strong> Export the expense list to CSV for Excel/Sheets.</li>
+        <li><strong>Multiple Groups:</strong> Support creating separate groups (e.g., "Trip to Bali", "Housemates") with their own users/expenses.</li>
+        <li><strong>Cloud Sync:</strong> Move from local SQLite to Supabase/Firebase for real-time collaboration across devices.</li>
+    </ul>
+
+    <h2>5. Polish</h2>
+    <ul>
+        <li><strong>Currency Picker:</strong> Support multi-currency expenses (auto-convert to base currency).</li>
+        <li><strong>Dark/Light Mode Toggle:</strong> Explicit toggle in settings.</li>
+    </ul>
+
+    <div class="recommendation">
+        <h3>Recommendation</h3>
+        <p>Start with <strong>Edit/Delete Expenses</strong> (high value, low effort) or <strong>Share Settlement</strong> (great for "Money Shots").</p>
+    </div>
+
+</body>
+</html>

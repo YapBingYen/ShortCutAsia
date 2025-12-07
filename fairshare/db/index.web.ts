@@ -41,6 +41,24 @@ export async function createUser(name: string, avatarColor?: string): Promise<nu
   return id;
 }
 
+export async function updateUser(id: number, name: string): Promise<void> {
+  const idx = users.findIndex(u => u.id === id);
+  if (idx !== -1) {
+    users[idx] = { ...users[idx], name };
+  }
+}
+
+export async function deleteUser(id: number): Promise<boolean> {
+  const hasExpenses = expenses.some(e => e.payer_id === id);
+  if (hasExpenses) return false;
+
+  const hasSplits = splits.some(s => s.user_id === id);
+  if (hasSplits) return false;
+
+  users = users.filter(u => u.id !== id);
+  return true;
+}
+
 export async function resetDatabase(): Promise<void> {
   users = [];
   expenses = [];
